@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 class SDSinhVien {
 	public static void main(String[] args) {
+		
 		Scanner sc = new Scanner(System.in);
 		SinhVien a = new SinhVien();
 		System.out.println("------------ Nhap thong tin sinh vien ------------");
@@ -38,14 +39,16 @@ class SDSinhVien {
 		}
 		System.out.println("------------*********------------");
 		float max = dsSV[0].diemTB();
-		int svDiemCao = 0;
 		for(int i=0;i<n;i++) {
 			if(dsSV[i].diemTB()> max) {
 				 max = dsSV[i].diemTB();
-				 svDiemCao = i;
 			}
 		}
-		System.out.println("---Sinh vien diem cao nhat: \n\t"+dsSV[svDiemCao].toString());
+		System.out.println("---Sinh vien diem cao nhat: \n\t");
+		for(SinhVien svTot : dsSV) {
+			if(svTot.diemTB() == max)
+				System.out.println(svTot.toString()+svTot.diemTB());
+		}
 		
 		for(int i=0;i<n;i++) {
 			for(int j = i+1;j<n;j++) {
