@@ -41,7 +41,6 @@ public class Gach {
 		maso = sc.nextLine();
 		System.out.print("Nhap mau gach: ");
 		mau = sc.nextLine();
-		sc.nextLine();
 		System.out.print("Nhap so luong gach: ");
 		soluong = sc.nextInt();
 		System.out.print("Nhap chieu dai gach: ");
