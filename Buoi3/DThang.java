@@ -33,4 +33,9 @@ public class DThang {
 		d1.doiDiem(dx, dy);
 		d2.doiDiem(dx, dy);
 	}
+	public double degree() {
+		double alpha = (float)(d2.giaTriY()-d1.giaTriY())/(d2.giaTriX()-d1.giaTriX());
+//		return alpha;
+		return Math.toDegrees(Math.atan(alpha));
+		}
 }

@@ -11,7 +11,7 @@ class SDSinhVien {
 		a.nhap();
 		a.nhapDiem();
 		System.out.println("Them mon LTDT co diem la A.");
-		a.dangKyHP("LTDT", "A");
+		a.dangKyHP("LTHDT", "A");
 		a.in();
 		a.inDiem();
 		System.out.println("\nDiem TB: "+a.diemTB());
@@ -47,7 +47,7 @@ class SDSinhVien {
 		System.out.println("---Sinh vien diem cao nhat: \n\t");
 		for(SinhVien svTot : dsSV) {
 			if(svTot.diemTB() == max)
-				System.out.println(svTot.toString()+svTot.diemTB());
+				System.out.println(svTot.toString()+"\t Diem TB:"+svTot.diemTB());
 		}
 		
 		for(int i=0;i<n;i++) {
