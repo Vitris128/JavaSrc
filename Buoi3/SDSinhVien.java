@@ -34,7 +34,7 @@ class SDSinhVien {
 		System.out.println("------------*********------------");
 		System.out.println("---Danh sach sinh vien bi canh bao hoc vu: ");
 		for(SinhVien sv : dsSV) {
-			if(sv.diemTB()<=1)
+			if(sv.diemTB()<1)
 				System.out.println("\t"+sv.tenSV()+" : "+sv.MSSV());
 		}
 		System.out.println("------------*********------------");
