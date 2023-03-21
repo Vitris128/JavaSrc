@@ -19,7 +19,7 @@ public class DiemMau extends Diem {
 		mau = new String(dm.mau);
 	}
 	public void in() {
-		super.hienThi();
+		super.in();
 		System.out.println(", mau: "+mau);
 	}
 	public String toString() {
@@ -30,7 +30,7 @@ public class DiemMau extends Diem {
 		in();
 	}
 	public void nhap() {
-		super.nhapDiem();
+		super.in();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Nhap mau: ");
 		mau = sc.nextLine();

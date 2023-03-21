@@ -20,7 +20,7 @@ public class Date {
 		m = dat.m;
 		y = dat.y;
 	}
-	public void hienThi() {
+	public void in() {
 		if(d<10) {
 			System.out.print("0"+d+"/");
 		}else {
@@ -47,7 +47,7 @@ public class Date {
 		}
 		return s;
 	}
-	public void nhapNgay() {
+	public void nhap() {
 		Scanner sc = new Scanner(System.in);
 		do {
 			System.out.print("Nhap ngay: ");

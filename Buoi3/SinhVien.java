@@ -51,7 +51,7 @@ public class SinhVien {
 		System.out.print("Nhap MSSV: ");
 		MSSV = sc.nextLine();
 		System.out.println("---Nhap ngay thang nam sinh---");
-		ngaySinh.nhapNgay();
+		ngaySinh.nhap();
 
 	}
 

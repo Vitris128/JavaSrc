@@ -5,7 +5,7 @@ public class SDDiemMau {
 		DiemMau a = new DiemMau(5,10,"Trang");
 		DiemMau b = new DiemMau();
 		b.nhap();
-		b.doiDiem(10, 8);
+		b.tinhtien(10, 8);
 		b.in();
 		b.ganMau("Vang");
 		b.in();

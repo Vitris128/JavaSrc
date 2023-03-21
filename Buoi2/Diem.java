@@ -20,20 +20,20 @@ public class Diem {
 		this.x = x;
 		this.y = y;
 	}
-	public void hienThi() {
+	public void in() {
 		System.out.println("("+x+","+y+")");
 	}
 	public String toString() {
 		return "("+x+","+y+")";
 	}
-	public void nhapDiem() {
+	public void nhap() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Nhap x = ");
 		x = sc.nextInt();
 		System.out.println("Nhap y = ");
 		y = sc.nextInt();
 	}
-	public void doiDiem(int dx, int dy) {
+	public void tinhtien(int dx, int dy) {
 		x+=dx;
 		y+=dy;
 	}
