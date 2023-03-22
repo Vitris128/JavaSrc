@@ -2,8 +2,6 @@ package Buoi4;
 
 import java.util.Scanner;
 
-import Buoi2.SinhVienCNTT;
-
 public class SDSVCNTT {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
