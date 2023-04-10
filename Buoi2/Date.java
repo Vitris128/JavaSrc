@@ -69,28 +69,23 @@ public class Date {
 		return h;
 	}
 	
-	public Date congNgay() {
-		Date n = new Date(d,m,y);
-		n.d++;
-		if(!n.hopLe()) {
-			n.d = 1;
-			n.m++;
-			if(!n.hopLe()) {
-				n.m = 1;
-				n.y++;
+	public void congNgay() {
+		d++;
+		if(!hopLe()) {
+			d = 1;
+			m++;
+			if(!hopLe()) {
+				m = 1;
+				y++;
 			}
 		}
-		return n;
 	}
-	public Date ngayHomSau() {
-		Date n = new Date(d,m,y);
-		return n.congNgay();
+	public void ngayHomSau() {
+		congNgay();
 	}
 	
-	public Date congNgay(int k) {
-		Date n = new Date(d,m,y);
+	public void congNgay(int k) {
 		for(int i=0;i<k;i++) 
-			n = n.congNgay();
-		return n;
+			congNgay();
 	}	
 }

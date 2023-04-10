@@ -11,13 +11,13 @@ public class SDDate {
 		System.out.print("Ngay vua nhap: ");
 		n.in();
 		System.out.print("Ngay hom sau la: ");
-		Date m = new Date();
-		m = n.ngayHomSau();
+		Date m = new Date(n);
+		m.ngayHomSau();
 		m.in();
 		System.out.print("Nhap so ngay thu n sau ngay hien tai: ");
 		Scanner  sc = new Scanner(System.in);
 		int k = sc.nextInt();
-		n = n.congNgay(k);
+		n.congNgay(k);
 		n.in();
 	}
 }
