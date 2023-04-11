@@ -15,7 +15,7 @@ public class HoaDon {
 		k = new KhachHang();
 		c = new Chitiet[50];
 	}
-	private HoaDon(HoaDon h) {
+	public HoaDon(HoaDon h) {
 		mso = new String(h.mso);
 		tde = new String(h.tde);
 		d = new Date(h.d);

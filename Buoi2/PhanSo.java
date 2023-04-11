@@ -73,6 +73,7 @@ public class PhanSo {
 		b.mau = b.mau*a.mau;
 		return b;
 	}
+	
 	public PhanSo congPhanSo(int n) {
 		PhanSo b = new PhanSo(tu, mau);
 		b.tu= b.tu + b.mau*n;
