@@ -1,4 +1,3 @@
-
 // mssv:b2111938, Name: NHNN, DETHI 1 , MAY 22
 import java.util.Scanner;
 
@@ -28,6 +27,7 @@ public class GDich {
 		System.out.println("Nhap ma giao dich: ");
 		mgd = sc.nextInt();
 		System.out.println("Nhap ho ten: ");
+		sc.nextLine();
 		hten = sc.nextLine();
 		System.out.println("Nhap ngay: ");
 		ngay = sc.nextLine();
@@ -53,6 +53,14 @@ public class GDich {
 		System.out.println("ukhfis: ");
 		gd2.in();
 
+	}
+
+	public int layMGD() {
+		return mgd;
+	}
+
+	public float giaTriGD() {
+		return 0.0f;
 	}
 
 }
