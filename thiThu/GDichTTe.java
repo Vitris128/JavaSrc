@@ -1,8 +1,5 @@
-package baithi;
-
 import java.util.Scanner;
-
-//
+//// mssv:b2111938, Name: NHNN, DETHI 1 , MAY 22
 public class GDichTTe extends GDich {
 	private float dgia;
 	private int sluong;
