@@ -1,111 +1,160 @@
-package baithi;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class QuocGiaPT extends QuocGia {
-	float ttho;
-	char chluc;
-	float dtich;
 
+	private float ttho;
+	private char chluc;
+	private float dtich;
+	
 	public QuocGiaPT() {
 		super();
 		ttho = 0.0f;
-		chluc = ' ';
+		chluc = '0';
 		dtich = 0.0f;
 	}
 
-	public QuocGiaPT(QuocGiaPT PT) {
-		super(PT);
-		this.ttho = PT.ttho;
-		this.chluc = PT.chluc;
-		this.dtich = PT.dtich;
-	}
-	public char layChauLuc() {
-		return chluc;
+	public QuocGiaPT(QuocGiaPT qgpt) {
+		super(qgpt);
+		ttho = qgpt.ttho;
+		chluc = qgpt.chluc;
+		dtich = qgpt.dtich;
+		
 	}
 
 	public void nhap() {
-		super.nhap();
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Nhap tuoi tho: ");
-		ttho = sc.nextFloat();
-		System.out.println("Nhap chau luc cua quoc gia: ");
-		chluc = sc.next().charAt(0);
+		super.nhap();
+		System.out.println("Nhap tuoi tho trung binh cua quoc gia:\n");
+		ttho = sc.nextFloat(); sc.nextLine();
+		System.out.println("Nhap chau luc cua quoc gia, A(A), Au(W), My(M), Uc(U), hay Phi(P): ");
+		chluc = sc.nextLine().toUpperCase().charAt(0);
 		System.out.println("Nhap dien tich cua quoc gia: ");
 		dtich = sc.nextFloat();
 	}
-
-	public void in() {
-		super.in();
-
+	
+	@Override
+	public String toString() {
+		String temp = super.toString();
+		temp += "Tuoi tho trung binh: " + ttho + "\n";
+		temp += "Chau luc: ";
+		switch (chluc) {
+		case 'A': {
+			temp += "A";
+			break;
+		}
+		case 'W': {
+			temp+= "Au";
+			break;
+		}
+		case 'M': {
+			temp += "My";
+			break;
+		}
+		case 'U': {
+			temp += "Uc";
+			break;
+		}
+		case 'P': {
+			temp += "Phi";
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + chluc);
+		}
+		
+		temp += "\n" + "Dien tich: " + dtich + "\n";
+		return temp;
 	}
-
+	
+	public void in() {
+		System.out.println(this);
+	}
+	
+	public String getchluc() {
+		return String.valueOf(this.chluc);
+	}
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int n;
-		System.out.println("Nhap so luong quoc gia: ");
-		n = sc.nextInt();
+		System.out.println("Nhap so luong quoc gia trong danh sach: ");
+		int n = sc.nextInt();
 		QuocGia ds[] = new QuocGia[n];
-		for (int i = 0; i < n; i++) {
-			System.out.print("Nhap 0 neu la quoc gia, 1 neu la quoc gia phat trien: ");
-			int c = sc.nextInt();
+		for(int i = 0; i < n; ++i) {
 			ds[i] = new QuocGia();
-			if (c == 0) {
-				ds[i].nhap();
-			} else if (c == 1) {
+			System.out.println("Nhap quoc gia thu " + (i+1) + ", quoc gia(0), hay quoc gia dang phat trien(1): ");
+			int c = sc.nextInt();
+			if(c == 1) {
 				ds[i] = new QuocGiaPT();
-				ds[i].nhap();
+			}
+			ds[i].nhap();
+		}
+		
+		System.out.println("Danh sach cac quoc gia: ");
+		for(QuocGia qg : ds) {
+			System.out.println(qg);
+		}
+		
+		System.out.println("Danh sach cac quoc gia o chau phi va co GDP > 500: ");
+		
+		for(QuocGia qg : ds) {
+			if(qg.getGDP() > 500 && qg.getchluc().equals("P")) {
+				System.out.println(qg.gettenqg());
 			}
 		}
-		for (int i = 0; i < n; i++) {
-			ds[i].in();
+		
+		System.out.println("GDP trung binh cua cac nuoc dang phat trien theo chau luc: ");
+		
+		HashMap<String, List<Float>> continentGDP = new HashMap<>();
+		
+		for(QuocGia qg : ds) {
+			String chauLuc = qg.getchluc();
+			if(!continentGDP.containsKey(chauLuc)) {
+				continentGDP.put(chauLuc, new ArrayList<Float>());
+			}
+			continentGDP.get(chauLuc).add(qg.getGDP());
 		}
-		System.out.println("Danh sach quoc gia co GDP > 500 o chau Phi: ");
-		for (int i = 0; i < n; i++) {
-			if(ds[i] instanceof QuocGiaPT) {
-				if(ds[i].layGDP() >500 && ds[i].layChauLuc()=='P') {
-					System.out.println("Ten: "+ds[i].tenQuocGia());
+		
+		for(String chluc : continentGDP.keySet()) {
+			List<Float> gdpList = continentGDP.get(chluc);
+			
+			float sumGDP = (float)gdpList.stream()
+									.mapToDouble(Float::floatValue)
+									.sum();
+			
+			float numCountries = gdpList.size();
+			
+			switch(chluc.charAt(0)) {
+				case 'A': {
+					System.out.print("Chau A: ");
+					break;
+				}
+				case 'W': {
+					System.out.print("Chau Au: ");
+					break;
+				}
+				case 'M': {
+					System.out.print("Chau Mi: ");
+					break;
+				}
+				case 'U': {
+					System.out.print("Chau Uc: ");
+					break;
+				}
+				case 'P': {
+					System.out.print("Chau Phi: ");
+					break;
 				}
 			}
+			
+			System.out.println(": " + sumGDP / numCountries);
+			
+			
+			
 		}
-		System.out.println("GDP trung binh o cac chau luc: ");
-		float GDPA = 0.0f; int A = 0;
-		float GDPW = 0.0f; int W = 0;
-		float GDPM = 0.0f; int M = 0;
-		float GDPU = 0.0f; int U = 0;
-		float GDPP = 0.0f; int P = 0;
-		for(int i=0;i<n;i++) {
-			if(ds[i].layChauLuc() == 'A') {
-				GDPA+=ds[i].layGDP();
-				A++;
-			} else if(ds[i].layChauLuc() == 'W') {
-				W++;
-				GDPW+=ds[i].layGDP();
-			} else if(ds[i].layChauLuc() == 'M') {
-				M++;
-				GDPM+=ds[i].layGDP();
-			} else if(ds[i].layChauLuc() == 'U') {
-				U++;
-				GDPU+=ds[i].layGDP();
-			} else if(ds[i].layChauLuc() == 'P') {
-				P++;
-				GDPP+=ds[i].layGDP();
-			}
-		}
-		if(GDPA!=0.0) {
-			System.out.println("GDP trung binh o chau A: "+GDPA/A);
-		}
-		if(GDPW!=0.0) {
-			System.out.println("GDP trung binh o chau Au: "+GDPW/W);
-		}
-		if(GDPM!=0.0) {
-			System.out.println("GDP trung binh o chau My: "+GDPM/M);
-		}
-		if(GDPU!=0.0) {
-			System.out.println("GDP trung binh o chau Uc: "+GDPU/U);
-		}
-		if(GDPP!=0.0) {
-			System.out.println("GDP trung binh o chau Phi: "+GDPP/P);
-		}
+
 	}
+
 }
