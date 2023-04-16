@@ -149,7 +149,7 @@ public class QuocGiaPT extends QuocGia {
 				}
 			}
 			
-			System.out.println(": " + sumGDP / numCountries);
+			System.out.println(sumGDP / numCountries);
 			
 			
 			
