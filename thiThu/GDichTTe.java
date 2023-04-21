@@ -87,10 +87,7 @@ public class GDichTTe extends GDich{
 
         for(GDich gd : ds){
             if(gd instanceof GDichTTe){
-                Long value = map.get(gd.getThangVaNam());
-                if(value == null){
-                    value = 0L;
-                }
+                Long value = map.getOrDefault(gd.getThangVaNam(), 0L);
                 map.put(gd.getThangVaNam(), gd.thanhTien() + value);
             }
         }
