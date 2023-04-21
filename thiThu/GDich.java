@@ -1,66 +1,77 @@
-// mssv:b2111938, Name: NHNN, DETHI 1 , MAY 22
 import java.util.Scanner;
 
 public class GDich {
+    private int mgdich;
+    private String hten;
+    private String ngay;
+    private boolean tthai;
 
-	private int mgd;
-	private String hten;
-	private String ngay;
-	private boolean tthai;
+    public GDich(){
+        mgdich = 0;
+        hten = new String();
+        ngay = new String();
+        tthai = false;
+    }
 
-	public GDich() {
-		this.mgd = 0;
-		this.hten = new String();
-		this.ngay = new String();
-		this.tthai = true;
-	}
+    public GDich(GDich gd){
+        mgdich = gd.mgdich;
+        hten = new String(gd.hten);
+        ngay = new String(gd.ngay);
+        tthai = gd.tthai;
+    }
 
-	public GDich(GDich g) {
-		this.mgd = g.mgd;
-		this.hten = new String(g.hten);
-		this.ngay = new String(g.ngay);
-		this.tthai = g.tthai;
-	}
+    public void nhap(){
+        Scanner sc = new Scanner(System.in);
 
-	public void nhap() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Nhap ma giao dich: ");
-		mgd = sc.nextInt();
-		System.out.println("Nhap ho ten: ");
-		sc.nextLine();
-		hten = sc.nextLine();
-		System.out.println("Nhap ngay: ");
-		ngay = sc.nextLine();
-		System.out.println("Nhap trang thai: ");
-		tthai = sc.nextBoolean();
-	}
+        System.out.println("Hay nhap ma so giao dich: ");
+        mgdich = sc.nextInt(); sc.nextLine();
+        System.out.println("Hay nhap ho ten nguoi giao dich: ");
+        hten = sc.nextLine();
+        System.out.println("Hay nhap ngay giao dich, voi dinh dang dd-mm-yyyy: ");
+        ngay = sc.nextLine();
+        System.out.println("Hay nhap trang thai giao dich, giao dich thanh cong (1), hoac giao dich thai bai (0):");
+        int c = sc.nextInt();
+        tthai = (c != 0);
+    }
 
-	public void in() {
-		System.out.println(
-				"ma giao dich: " + mgd + ", ho ten: " + hten + ", ngay: " + ngay + ", trang thai giao dich: " + tthai);
-	}
+    @Override
+    public String toString() {
+        return  "Ma so giao dich: " + mgdich + "\n" +
+                "Ho Ten: " + hten + "\n" +
+                "Ngay giao dich: " + ngay + "\n" +
+                "Trang thai: " + ((tthai) ? "thanh cong" : "that bai") +
+                "\n";
+    }
 
-	public String toString() {
-		return "ma giao dich: " + mgd + ", ho ten: " + hten + ", ngay: " + ngay + ", trang thai giao dich: " + tthai;
-	}
+    public void in(){
+        System.out.println(this);
+    }
 
-	public static void main(String[] args) {
-		GDich gd1 = new GDich();
-		System.out.println("Nhap thong tin giao dich: ");
-		gd1.nhap();
-		gd1.in();
-		GDich gd2 = new GDich(gd1);
-		System.out.println("ukhfis: ");
-		gd2.in();
+    public int getMgdich() {
+        return mgdich;
+    }
 
-	}
+    public String getThangVaNam(){
+        String res = ngay.substring(ngay.indexOf("-") + 1);
+        if(res.substring(0, res.indexOf("-")).length() == 1){
+            res = "0" + res;
+        }
+        return res;
+    }
 
-	public int layMGD() {
-		return mgd;
-	}
+    public long thanhTien(){
+        return 0;
+    }
 
-	public float giaTriGD() {
-		return 0.0f;
-	}
+    public static void main(String[] args) {
+        GDich gd1 = new GDich();
+        gd1.nhap();
+        System.out.println("Thong tin giao dich so 1: ");
+        gd1.in();
+        GDich gd2 = new GDich(gd1);
+        System.out.println("Thong tin giao dich so 2, duoc sao chep tu giao dich so 1: ");
+        System.out.println(gd1.getThangVaNam());
+        gd2.in();
+    }
 
 }
